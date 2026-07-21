@@ -15,7 +15,7 @@ const config: QuartzConfig = {
     analytics: null,
     locale: "ko-KR",
     baseUrl: "krex4715.github.io/magent-tech-docs",
-    ignorePatterns: ["private", "templates", ".obsidian", "_flow_viewer"],
+    ignorePatterns: ["private", "templates", ".obsidian", "_flow_viewer", "*개념_LoRA*"],
     defaultDateType: "modified",
     theme: {
       fontOrigin: "googleFonts",
