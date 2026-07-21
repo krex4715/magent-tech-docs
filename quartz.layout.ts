@@ -38,7 +38,24 @@ export const defaultContentPageLayout: PageLayout = {
         { Component: Component.ReaderMode() },
       ],
     }),
-    Component.Explorer(),
+    Component.Explorer({
+      filterFn: (node) =>
+        node.slugSegment !== "tags" &&
+        node.slugSegment !== "(참고)-개념_LoRA와-QLoRA",
+      sortFn: (a, b) => {
+        const back = "_FEEDBACK_자문노트"
+        const aBack = a.slugSegment === back
+        const bBack = b.slugSegment === back
+        if (aBack !== bBack) return aBack ? 1 : -1
+        if ((!a.isFolder && !b.isFolder) || (a.isFolder && b.isFolder)) {
+          return a.displayName.localeCompare(b.displayName, undefined, {
+            numeric: true,
+            sensitivity: "base",
+          })
+        }
+        return !a.isFolder && b.isFolder ? 1 : -1
+      },
+    }),
   ],
   right: [
     Component.Graph(),
@@ -62,7 +79,24 @@ export const defaultListPageLayout: PageLayout = {
         { Component: Component.Darkmode() },
       ],
     }),
-    Component.Explorer(),
+    Component.Explorer({
+      filterFn: (node) =>
+        node.slugSegment !== "tags" &&
+        node.slugSegment !== "(참고)-개념_LoRA와-QLoRA",
+      sortFn: (a, b) => {
+        const back = "_FEEDBACK_자문노트"
+        const aBack = a.slugSegment === back
+        const bBack = b.slugSegment === back
+        if (aBack !== bBack) return aBack ? 1 : -1
+        if ((!a.isFolder && !b.isFolder) || (a.isFolder && b.isFolder)) {
+          return a.displayName.localeCompare(b.displayName, undefined, {
+            numeric: true,
+            sensitivity: "base",
+          })
+        }
+        return !a.isFolder && b.isFolder ? 1 : -1
+      },
+    }),
   ],
   right: [],
 }
